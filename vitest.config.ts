@@ -17,6 +17,7 @@ export default defineConfig({
         '*.config.*',
         'src/main.tsx',
         'src/vite-env.d.ts',
+        'src/types/index.ts',
       ],
       thresholds: {
         statements: 95,
