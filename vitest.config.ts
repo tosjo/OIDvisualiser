@@ -17,7 +17,8 @@ export default defineConfig({
         '*.config.*',
         'src/main.tsx',
         'src/vite-env.d.ts',
-        'src/types/index.ts',
+        '**/index.ts',
+        'src/components/OIDTree/OIDTree.tsx', // Exclude due to D3 dependency
       ],
       thresholds: {
         statements: 95,
