@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import type { OIDNode, OIDTree, OIDSearchResult } from '@/types';
 import { OIDTreeSchema } from '@/types';
-import { searchNodes, buildTreeFromFlat } from '@/utils/oid';
+import { searchNodes, buildTreeFromFlat, findNodeById, findNodeByOID } from '@/utils/oid';
 
 interface OIDState {
   // Data
@@ -28,6 +28,7 @@ interface OIDState {
   clearSearch: () => void;
   setError: (error: string | null) => void;
   reset: () => void;
+  addNode: (parentId: string, node: OIDNode) => void;
 }
 
 const initialState = {
@@ -128,6 +129,20 @@ export const useOIDStore = create<OIDState>()(
 
         const results = searchNodes(tree.roots, query);
         set({ searchQuery: query, searchResults: results });
+        
+        // If we have results, select and expand to the first one
+        if (results.length > 0) {
+          const firstResult = results[0];
+          // Expand all nodes in the path
+          firstResult.path.forEach(nodeId => {
+            const { expandedNodes } = get();
+            if (!expandedNodes.has(nodeId)) {
+              get().toggleNodeExpanded(nodeId);
+            }
+          });
+          // Select the node
+          get().selectNode(firstResult.node.id);
+        }
       },
 
       clearSearch: () => {
@@ -140,6 +155,38 @@ export const useOIDStore = create<OIDState>()(
 
       reset: () => {
         set(initialState);
+      },
+
+      addNode: (parentId, node) => {
+        const { tree } = get();
+        if (!tree) return;
+
+        const addNodeRecursive = (nodes: OIDNode[]): boolean => {
+          for (const n of nodes) {
+            if (n.oid === parentId) {
+              if (!n.children) {
+                n.children = [];
+              }
+              n.children.push(node);
+              return true;
+            }
+            if (n.children && addNodeRecursive(n.children)) {
+              return true;
+            }
+          }
+          return false;
+        };
+
+        const updatedTree = { ...tree, roots: [...tree.roots] };
+        if (addNodeRecursive(updatedTree.roots)) {
+          set({ tree: updatedTree });
+          // Expand parent node to show new child
+          const { expandedNodes } = get();
+          const parentNode = findNodeByOID(updatedTree.roots, parentId);
+          if (parentNode && !expandedNodes.has(parentNode.id)) {
+            get().toggleNodeExpanded(parentNode.id);
+          }
+        }
       },
     }),
     {

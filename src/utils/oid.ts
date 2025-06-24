@@ -162,6 +162,26 @@ export function findNodeById(roots: OIDNode[], nodeId: string): OIDNode | null {
 }
 
 /**
+ * Finds a node by its OID in the tree
+ */
+export function findNodeByOID(roots: OIDNode[], oid: string): OIDNode | null {
+  function search(nodes: OIDNode[]): OIDNode | null {
+    for (const node of nodes) {
+      if (node.oid === oid) {
+        return node;
+      }
+      if (node.children) {
+        const found = search(node.children);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+
+  return search(roots);
+}
+
+/**
  * Builds a tree structure from a flat array of OID nodes
  */
 export function buildTreeFromFlat(nodes: OIDNode[]): OIDNode[] {

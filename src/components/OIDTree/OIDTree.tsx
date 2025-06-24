@@ -51,9 +51,8 @@ export const OIDTree: FC<OIDTreeProps> = ({ data, onNodeClick }) => {
     };
   }
 
-  const handleNodeClick = useCallback((nodeDatum: TreeNodeDatum) => {
-    const customNodeDatum = nodeDatum as CustomNodeDatum;
-    const nodeId = customNodeDatum.attributes?.id;
+  const handleNodeClick = useCallback((node: any) => {
+    const nodeId = node.data?.attributes?.id || node.attributes?.id;
     if (nodeId) {
       toggleNodeExpanded(nodeId);
       onNodeClick?.(nodeId);
