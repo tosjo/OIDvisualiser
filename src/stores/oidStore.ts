@@ -29,6 +29,7 @@ interface OIDState {
   setError: (error: string | null) => void;
   reset: () => void;
   addNode: (parentId: string, node: OIDNode) => void;
+  updateNode: (nodeId: string, updatedNode: OIDNode) => void;
 }
 
 const initialState = {
@@ -186,6 +187,29 @@ export const useOIDStore = create<OIDState>()(
           if (parentNode && !expandedNodes.has(parentNode.id)) {
             get().toggleNodeExpanded(parentNode.id);
           }
+        }
+      },
+
+      updateNode: (nodeId, updatedNode) => {
+        const { tree } = get();
+        if (!tree) return;
+
+        const updateNodeRecursive = (nodes: OIDNode[]): boolean => {
+          for (let i = 0; i < nodes.length; i++) {
+            if (nodes[i].id === nodeId) {
+              nodes[i] = { ...nodes[i], ...updatedNode };
+              return true;
+            }
+            if (nodes[i].children && updateNodeRecursive(nodes[i].children)) {
+              return true;
+            }
+          }
+          return false;
+        };
+
+        const updatedTree = { ...tree, roots: [...tree.roots] };
+        if (updateNodeRecursive(updatedTree.roots)) {
+          set({ tree: updatedTree });
         }
       },
     }),

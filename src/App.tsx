@@ -4,6 +4,7 @@ import { SimpleTree } from '@/components/SimpleTree';
 import { SearchBar } from '@/components/SearchBar';
 import { NodeDetails } from '@/components/NodeDetails';
 import { AddOIDModal } from '@/components/AddOIDModal';
+import { ImportRelatedOIDs } from '@/components/ImportRelatedOIDs';
 import { useOIDStore } from '@/stores/oidStore';
 import { sampleOIDTree } from '@/data/sampleOIDs';
 
@@ -22,14 +23,16 @@ const App: FC = () => {
     // Load sample data on mount
     loadTreeFromData(sampleOIDTree);
     
-    // Load custom OIDs from localStorage
-    const savedOIDs = JSON.parse(localStorage.getItem('customOIDs') || '[]');
-    const { addNode } = useOIDStore.getState();
-    savedOIDs.forEach((oid: any) => {
-      if (oid.parent && oid.oid && oid.name) {
-        addNode(oid.parent, oid);
-      }
-    });
+    // Load custom OIDs from localStorage after a delay to ensure tree is loaded
+    setTimeout(() => {
+      const savedOIDs = JSON.parse(localStorage.getItem('customOIDs') || '[]');
+      const { addNode } = useOIDStore.getState();
+      savedOIDs.forEach((oid: any) => {
+        if (oid.parent && oid.oid && oid.name) {
+          addNode(oid.parent, oid);
+        }
+      });
+    }, 500);
   }, [loadTreeFromData]);
 
   useEffect(() => {
@@ -138,6 +141,13 @@ const App: FC = () => {
                 </button>
               </div>
             </div>
+
+            {/* Import Related OIDs */}
+            {selectedNodeId && (
+              <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-6">
+                <ImportRelatedOIDs />
+              </div>
+            )}
           </div>
         </div>
       </div>

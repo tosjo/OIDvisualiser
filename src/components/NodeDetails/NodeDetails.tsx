@@ -1,9 +1,12 @@
 import type { FC } from 'react';
+import { useState } from 'react';
 import { useOIDStore } from '@/stores/oidStore';
 import { findNodeById } from '@/utils/oid';
+import { EditOIDModal } from '@/components/EditOIDModal';
 
 export const NodeDetails: FC = () => {
   const { tree, selectedNodeId } = useOIDStore();
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
   if (!tree || !selectedNodeId) {
     return null;
@@ -20,8 +23,11 @@ export const NodeDetails: FC = () => {
     });
   };
 
+  const isCustomOID = selectedNode.oid.startsWith('2.16.528.1.1003.3');
+
   return (
-    <div className="space-y-4">
+    <>
+      <div className="space-y-4">
       <div>
         <h3 className="text-sm font-medium text-gray-500">Name</h3>
         <p className="mt-1 text-lg font-medium text-gray-900">{selectedNode.name}</p>
@@ -59,6 +65,24 @@ export const NodeDetails: FC = () => {
           </ul>
         </div>
       )}
+
+      {isCustomOID && (
+        <div className="pt-4 border-t border-gray-200">
+          <button
+            onClick={() => setIsEditModalOpen(true)}
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
+          >
+            Edit OID
+          </button>
+        </div>
+      )}
     </div>
+    
+    <EditOIDModal
+      isOpen={isEditModalOpen}
+      onClose={() => setIsEditModalOpen(false)}
+      node={selectedNode}
+    />
+    </>
   );
 };
