@@ -122,6 +122,54 @@ export const sampleOIDTree: OIDTree = {
           name: 'Country',
           children: [
             {
+              id: 'nl',
+              oid: '2.16.528',
+              name: 'Netherlands',
+              children: [
+                {
+                  id: 'nl-1',
+                  oid: '2.16.528.1',
+                  name: 'Dutch Organizations',
+                  children: [
+                    {
+                      id: 'nl-healthcare',
+                      oid: '2.16.528.1.1003',
+                      name: 'Dutch Healthcare',
+                      description: 'OID arc for Dutch healthcare organizations',
+                      children: [
+                        {
+                          id: 'nl-healthcare-1',
+                          oid: '2.16.528.1.1003.1',
+                          name: 'Healthcare Providers',
+                          description: 'Dutch healthcare provider organizations',
+                        },
+                        {
+                          id: 'nl-healthcare-2',
+                          oid: '2.16.528.1.1003.2',
+                          name: 'Healthcare Systems',
+                          description: 'Dutch healthcare information systems',
+                        },
+                        {
+                          id: 'nl-healthcare-3',
+                          oid: '2.16.528.1.1003.3',
+                          name: 'Custom Healthcare Arc',
+                          description: 'Your custom OID arc for healthcare applications',
+                          children: [
+                            {
+                              id: 'your-org',
+                              oid: '2.16.528.1.1003.3.1',
+                              name: 'Your Organization',
+                              description: 'Your organization\'s OID namespace',
+                            },
+                          ],
+                        },
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            {
               id: 'us',
               oid: '2.16.840',
               name: 'United States',
@@ -132,8 +180,8 @@ export const sampleOIDTree: OIDTree = {
     },
   ],
   metadata: {
-    totalNodes: 19,
-    maxDepth: 6,
+    totalNodes: 26,
+    maxDepth: 8,
     lastUpdated: new Date().toISOString(),
   },
 };
