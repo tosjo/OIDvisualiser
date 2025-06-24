@@ -46,9 +46,10 @@ export const ImportRelatedOIDs: FC = () => {
       if (selectedNode.oid === '2.16.528.1.1003') {
         // Add known children of Nederlandse Overheid if not already present
         const knownChildren = [
-          { suffix: '4', name: 'DigiD', description: 'Dutch digital identity' },
-          { suffix: '5', name: 'BSN', description: 'Burgerservicenummer registry' },
-          { suffix: '10', name: 'eHerkenning', description: 'Business authentication' },
+          { suffix: '10', name: 'ep-bsn', description: 'Electronic Pseudonym BSN' },
+          { suffix: '11', name: 'gba', description: 'Gemeentelijke Basisadministratie' },
+          { suffix: '12', name: 'uwv', description: 'UWV - Uitvoeringsinstituut Werknemersverzekeringen' },
+          { suffix: '13', name: 'belastingdienst-cn', description: 'Belastingdienst Common Name' },
         ];
 
         let count = 0;
@@ -98,10 +99,10 @@ export const ImportRelatedOIDs: FC = () => {
       // For demonstration, add some siblings
       if (parentOid === '2.16.528.1') {
         const knownSiblings = [
-          { oid: '2.16.528.1.1001', name: 'KvK', description: 'Kamer van Koophandel' },
-          { oid: '2.16.528.1.1002', name: 'CBS', description: 'Centraal Bureau voor de Statistiek' },
-          { oid: '2.16.528.1.1004', name: 'RDW', description: 'Rijksdienst voor het Wegverkeer' },
-          { oid: '2.16.528.1.1005', name: 'UWV', description: 'Uitvoeringsinstituut Werknemersverzekeringen' },
+          { oid: '2.16.528.1.1001', name: 'diginotar', description: 'DigiNotar (defunct certificate authority)' },
+          { oid: '2.16.528.1.1002', name: 'gemnet', description: 'GemNet' },
+          { oid: '2.16.528.1.1004', name: 'digid', description: 'DigiD - Dutch digital identity' },
+          { oid: '2.16.528.1.1007', name: 'a-select', description: 'A-Select authentication system' },
         ];
 
         let count = 0;
@@ -133,9 +134,43 @@ export const ImportRelatedOIDs: FC = () => {
     }
   };
 
+  // Show info about registered OIDs
+  const getRegisteredInfo = () => {
+    if (selectedNode.oid === '2.16.528.1.1003') {
+      return (
+        <div className="text-xs text-gray-500 mb-3 p-3 bg-blue-50 rounded">
+          <p className="font-semibold mb-1">Known registered children:</p>
+          <ul className="space-y-1">
+            <li>• 2.16.528.1.1003.1 - pki-voor-de-overheid (already loaded)</li>
+            <li>• 2.16.528.1.1003.2 - belastingdienst (already loaded)</li>
+            <li>• 2.16.528.1.1003.3 - Your namespace (available)</li>
+            <li>• 2.16.528.1.1003.10-13 - Various government services</li>
+          </ul>
+        </div>
+      );
+    }
+    if (selectedNode.oid === '2.16.528.1') {
+      return (
+        <div className="text-xs text-gray-500 mb-3 p-3 bg-blue-50 rounded">
+          <p className="font-semibold mb-1">Known siblings include:</p>
+          <ul className="space-y-1">
+            <li>• 1001 - diginotar (defunct CA)</li>
+            <li>• 1002 - gemnet</li>
+            <li>• 1003 - nederlandse-overheid (current)</li>
+            <li>• 1004 - digid</li>
+            <li>• 1007 - a-select</li>
+          </ul>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
     <div className="mt-6 space-y-3">
       <h3 className="text-lg font-medium text-gray-900">Import from Registry</h3>
+      
+      {getRegisteredInfo()}
       
       <button
         onClick={handleLoadChildren}
