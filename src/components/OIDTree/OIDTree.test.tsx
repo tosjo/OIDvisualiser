@@ -5,10 +5,20 @@ import type { OIDNode } from '@/types';
 
 // Mock react-d3-tree since it uses D3 which doesn't work well in jsdom
 vi.mock('react-d3-tree', () => ({
-  default: ({ data, onNodeClick }: { data: unknown; onNodeClick: (node: { attributes: { id: string } }) => void }) => (
+  default: ({
+    data,
+    onNodeClick,
+  }: {
+    data: unknown;
+    onNodeClick: (node: { attributes: { id: string } }) => void;
+  }) => (
     <div data-testid="mock-tree">
       {JSON.stringify(data)}
-      <button onClick={() => onNodeClick({ attributes: { id: 'test-id' } })}>
+      <button
+        onClick={() => {
+          onNodeClick({ attributes: { id: 'test-id' } });
+        }}
+      >
         Click Node
       </button>
     </div>
@@ -46,10 +56,10 @@ describe('OIDTree', () => {
     const { getByText } = render(
       <OIDTree data={mockData} onNodeClick={mockOnNodeClick} />
     );
-    
+
     const clickButton = getByText('Click Node');
     clickButton.click();
-    
+
     expect(mockOnNodeClick).toHaveBeenCalledWith('test-id');
   });
 

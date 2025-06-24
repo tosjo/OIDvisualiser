@@ -2,40 +2,53 @@
   width: 100%;
   height: 100%;
   min-height: 600px;
-  background: #f9fafb;
-  border-radius: 0.5rem;
+  background: linear-gradient(to bottom right, #f8fafc, #f1f5f9);
   overflow: hidden;
   position: relative;
 }
 
 .node-circle {
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
 }
 
 .node-circle:hover {
-  fill: #ddd6fe;
-  stroke: #7c3aed;
+  fill: #60a5fa;
+  stroke: #3b82f6;
+  transform: scale(1.1);
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
 }
 
 .node-name {
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 600;
   pointer-events: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .node-oid {
   pointer-events: none;
+  font-weight: 400;
+  opacity: 0.8;
 }
 
 .node-expand-indicator {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
   pointer-events: none;
 }
 
 .tree-link {
   fill: none;
-  stroke: #d1d5db;
+  stroke: #cbd5e1;
   stroke-width: 2;
+  stroke-dasharray: 5, 5;
+  animation: dash 20s linear infinite;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -100;
+  }
 }

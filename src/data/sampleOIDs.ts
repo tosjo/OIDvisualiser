@@ -132,16 +132,17 @@ export const sampleOIDTree: OIDTree = {
                   name: 'Dutch Organizations',
                   children: [
                     {
-                      id: 'nl-healthcare',
+                      id: 'nl-government',
                       oid: '2.16.528.1.1003',
-                      name: 'Dutch Healthcare',
-                      description: 'OID arc for Dutch healthcare organizations',
+                      name: 'Nederlandse Overheid',
+                      description: 'Dutch Government OID arc',
                       children: [
                         {
                           id: 'nl-healthcare-1',
                           oid: '2.16.528.1.1003.1',
                           name: 'Healthcare Providers',
-                          description: 'Dutch healthcare provider organizations',
+                          description:
+                            'Dutch healthcare provider organizations',
                         },
                         {
                           id: 'nl-healthcare-2',
@@ -153,13 +154,14 @@ export const sampleOIDTree: OIDTree = {
                           id: 'nl-healthcare-3',
                           oid: '2.16.528.1.1003.3',
                           name: 'Custom Healthcare Arc',
-                          description: 'Your custom OID arc for healthcare applications',
+                          description:
+                            'Your custom OID arc for healthcare applications',
                           children: [
                             {
                               id: 'your-org',
                               oid: '2.16.528.1.1003.3.1',
                               name: 'Your Organization',
-                              description: 'Your organization\'s OID namespace',
+                              description: "Your organization's OID namespace",
                             },
                           ],
                         },
