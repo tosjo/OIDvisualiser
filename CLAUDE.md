@@ -11,6 +11,7 @@ OID Visualizer is a React-based web application for visualizing Object Identifie
 Since the project is not yet initialized, here are the planned commands based on the project plan:
 
 ### Initial Setup
+
 ```bash
 # Initialize the project (when starting implementation)
 git init
@@ -25,6 +26,7 @@ npm install -D @storybook/react-vite typedoc
 ```
 
 ### Development
+
 ```bash
 npm run dev          # Start development server with Vite
 npm run build        # Build for production
@@ -32,6 +34,7 @@ npm run preview      # Preview production build
 ```
 
 ### Testing
+
 ```bash
 npm run test         # Run unit tests with Vitest
 npm run test:watch   # Run tests in watch mode
@@ -41,6 +44,7 @@ npm run storybook    # Start Storybook for component development
 ```
 
 ### Code Quality
+
 ```bash
 npm run lint         # Run ESLint with security plugins
 npm run lint:fix     # Auto-fix linting issues
@@ -50,6 +54,7 @@ npm audit            # Check for security vulnerabilities
 ```
 
 ### Docker
+
 ```bash
 docker build -t oid-visualizer .                    # Build Docker image
 docker-compose up -d                                # Run locally with docker-compose
@@ -59,6 +64,7 @@ docker-compose -f docker-compose.prod.yml up -d     # Run production config
 ## Architecture
 
 ### Directory Structure
+
 ```
 src/
 ├── components/         # React components with tests and stories
@@ -75,6 +81,7 @@ src/
 ```
 
 ### Key Technologies
+
 - **Frontend Framework**: React 18 with TypeScript 5 (strict mode)
 - **Build Tool**: Vite 5 for fast development
 - **State Management**: Zustand for lightweight state handling
@@ -84,12 +91,14 @@ src/
 - **HTTP Client**: Axios with interceptors
 
 ### Testing Strategy
+
 - **Unit/Integration**: Vitest + React Testing Library
 - **E2E**: Playwright for cross-browser testing
 - **Coverage Target**: 95% minimum
 - **Component Testing**: Storybook for visual testing
 
 ### Security Considerations
+
 - Content Security Policy (CSP) headers configured
 - Input validation using Zod schemas
 - No hardcoded secrets (use environment variables)
@@ -99,6 +108,7 @@ src/
 ## Git Workflow
 
 The project follows GitFlow:
+
 - `main`: Production-ready code
 - `develop`: Integration branch
 - `feature/*`: New features
@@ -106,12 +116,14 @@ The project follows GitFlow:
 - `hotfix/*`: Emergency fixes
 
 ### Git Best Practices
+
 - **Commit frequently**: Make atomic commits for each logical change
 - **Push regularly**: Push commits to remote after completing each feature or fix
 - **Never commit directly to main**: Always work in feature branches
 - **Test before committing**: Ensure all tests pass before committing changes
 
 Commit messages follow Conventional Commits:
+
 ```
 type(scope): subject
 
@@ -125,6 +137,7 @@ Types: feat, fix, docs, style, refactor, perf, test, chore
 ## CI/CD Pipeline
 
 GitHub Actions workflows handle:
+
 - Running tests and linting on all PRs
 - Security vulnerability scanning
 - Docker image building and publishing
