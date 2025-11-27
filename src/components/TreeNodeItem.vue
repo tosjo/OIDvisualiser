@@ -42,7 +42,7 @@ function handleChildToggle(oid: string) {
     <div
       :class="[
         'flex items-center gap-1 px-2 py-1 rounded cursor-pointer text-sm',
-        isSelected ? 'bg-blue-100 text-blue-900' : 'hover:bg-gray-100'
+        isSelected ? 'bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100' : 'hover:bg-gray-100 dark:hover:bg-gray-700'
       ]"
       :style="{ paddingLeft }"
       @click="handleClick"
@@ -50,7 +50,7 @@ function handleChildToggle(oid: string) {
       <!-- Expand/collapse button -->
       <button
         v-if="hasChildren"
-        class="w-4 h-4 flex items-center justify-center text-gray-500 hover:text-gray-700"
+        class="w-4 h-4 flex items-center justify-center text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
         @click="handleToggle"
       >
         {{ node.expanded ? '\u25BC' : '\u25B6' }}
@@ -58,8 +58,8 @@ function handleChildToggle(oid: string) {
       <span v-else class="w-4 h-4"></span>
 
       <!-- Node content -->
-      <span class="font-mono text-xs text-gray-500">{{ node.oid }}</span>
-      <span class="ml-2 truncate">{{ node.name }}</span>
+      <span class="font-mono text-xs text-gray-500 dark:text-gray-400">{{ node.oid }}</span>
+      <span class="ml-2 truncate dark:text-gray-200">{{ node.name }}</span>
     </div>
 
     <!-- Children -->

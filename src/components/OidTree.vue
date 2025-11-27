@@ -18,20 +18,20 @@ function selectNode(node: OidTreeNode) {
     <div class="flex gap-2 mb-4">
       <button
         @click="expandAll"
-        class="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:bg-gray-200"
+        class="px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-200 dark:hover:bg-gray-600"
       >
         Expand All
       </button>
       <button
         @click="collapseAll"
-        class="px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded hover:bg-gray-200"
+        class="px-2 py-1 text-xs font-medium text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 rounded hover:bg-gray-200 dark:hover:bg-gray-600"
       >
         Collapse All
       </button>
     </div>
 
     <!-- Tree -->
-    <div v-if="tree.length === 0" class="text-gray-500 text-sm">
+    <div v-if="tree.length === 0" class="text-gray-500 dark:text-gray-400 text-sm">
       No OIDs yet. Click "Add OID" to get started.
     </div>
     <ul v-else class="space-y-1">

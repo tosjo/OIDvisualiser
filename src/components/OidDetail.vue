@@ -22,23 +22,23 @@ function formatDate(iso: string): string {
 </script>
 
 <template>
-  <div class="bg-white rounded-lg border border-gray-200 p-6">
+  <div class="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-6">
     <!-- Header -->
     <div class="flex items-start justify-between mb-6">
       <div>
-        <h2 class="text-lg font-semibold text-gray-900">{{ entry.name }}</h2>
-        <p class="font-mono text-sm text-gray-500 mt-1">{{ entry.oid }}</p>
+        <h2 class="text-lg font-semibold text-gray-900 dark:text-white">{{ entry.name }}</h2>
+        <p class="font-mono text-sm text-gray-500 dark:text-gray-400 mt-1">{{ entry.oid }}</p>
       </div>
       <div class="flex gap-2">
         <button
           @click="emit('edit', entry.oid)"
-          class="px-3 py-1.5 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+          class="px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-50 dark:hover:bg-gray-600"
         >
           Edit
         </button>
         <button
           @click="confirmDelete(entry.oid)"
-          class="px-3 py-1.5 text-sm font-medium text-red-700 bg-white border border-red-300 rounded-md hover:bg-red-50"
+          class="px-3 py-1.5 text-sm font-medium text-red-700 dark:text-red-400 bg-white dark:bg-gray-700 border border-red-300 dark:border-red-800 rounded-md hover:bg-red-50 dark:hover:bg-red-900/30"
         >
           Delete
         </button>
@@ -48,31 +48,31 @@ function formatDate(iso: string): string {
     <!-- Details -->
     <dl class="space-y-4">
       <div v-if="entry.description">
-        <dt class="text-sm font-medium text-gray-500">Description</dt>
-        <dd class="mt-1 text-sm text-gray-900">{{ entry.description }}</dd>
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Description</dt>
+        <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100">{{ entry.description }}</dd>
       </div>
 
       <div v-if="entry.asnNotation">
-        <dt class="text-sm font-medium text-gray-500">ASN.1 Notation</dt>
-        <dd class="mt-1 font-mono text-sm text-gray-900 bg-gray-50 p-2 rounded">
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">ASN.1 Notation</dt>
+        <dd class="mt-1 font-mono text-sm text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900 p-2 rounded">
           {{ entry.asnNotation }}
         </dd>
       </div>
 
       <div v-if="entry.iriNotation">
-        <dt class="text-sm font-medium text-gray-500">IRI Notation</dt>
-        <dd class="mt-1 font-mono text-sm text-gray-900 bg-gray-50 p-2 rounded">
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">IRI Notation</dt>
+        <dd class="mt-1 font-mono text-sm text-gray-900 dark:text-gray-100 bg-gray-50 dark:bg-gray-900 p-2 rounded">
           {{ entry.iriNotation }}
         </dd>
       </div>
 
       <div v-if="entry.comments">
-        <dt class="text-sm font-medium text-gray-500">Comments</dt>
-        <dd class="mt-1 text-sm text-gray-900 whitespace-pre-wrap">{{ entry.comments }}</dd>
+        <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Comments</dt>
+        <dd class="mt-1 text-sm text-gray-900 dark:text-gray-100 whitespace-pre-wrap">{{ entry.comments }}</dd>
       </div>
 
-      <div class="pt-4 border-t border-gray-200">
-        <div class="grid grid-cols-2 gap-4 text-xs text-gray-500">
+      <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+        <div class="grid grid-cols-2 gap-4 text-xs text-gray-500 dark:text-gray-400">
           <div>
             <span class="font-medium">Created:</span>
             {{ formatDate(entry.createdAt) }}
