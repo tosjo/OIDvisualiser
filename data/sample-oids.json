@@ -1,0 +1,80 @@
+{
+  "version": "1.0",
+  "lastModified": "2025-11-27T00:00:00Z",
+  "entries": [
+    {
+      "oid": "1.2",
+      "name": "iso.member-body",
+      "description": "ISO member body",
+      "asnNotation": "{iso(1) member-body(2)}",
+      "iriNotation": "/ISO/Member-Body",
+      "createdAt": "2025-11-27T00:00:00Z",
+      "modifiedAt": "2025-11-27T00:00:00Z"
+    },
+    {
+      "oid": "1.2.840",
+      "name": "us",
+      "description": "United States",
+      "asnNotation": "{iso(1) member-body(2) us(840)}",
+      "iriNotation": "/ISO/Member-Body/US",
+      "createdAt": "2025-11-27T00:00:00Z",
+      "modifiedAt": "2025-11-27T00:00:00Z"
+    },
+    {
+      "oid": "1.2.840.113549",
+      "name": "rsadsi",
+      "description": "RSA Data Security, Inc.",
+      "asnNotation": "{iso(1) member-body(2) us(840) rsadsi(113549)}",
+      "iriNotation": "/ISO/Member-Body/US/113549",
+      "comments": "Used for PKCS standards",
+      "createdAt": "2025-11-27T00:00:00Z",
+      "modifiedAt": "2025-11-27T00:00:00Z"
+    },
+    {
+      "oid": "1.2.840.113549.1",
+      "name": "pkcs",
+      "description": "Public-Key Cryptography Standards",
+      "asnNotation": "{iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)}",
+      "createdAt": "2025-11-27T00:00:00Z",
+      "modifiedAt": "2025-11-27T00:00:00Z"
+    },
+    {
+      "oid": "1.2.840.113549.1.1",
+      "name": "pkcs-1",
+      "description": "PKCS #1 - RSA Cryptography Standard",
+      "createdAt": "2025-11-27T00:00:00Z",
+      "modifiedAt": "2025-11-27T00:00:00Z"
+    },
+    {
+      "oid": "1.2.840.113549.1.7",
+      "name": "pkcs-7",
+      "description": "PKCS #7 - Cryptographic Message Syntax",
+      "createdAt": "2025-11-27T00:00:00Z",
+      "modifiedAt": "2025-11-27T00:00:00Z"
+    },
+    {
+      "oid": "2.5",
+      "name": "ds",
+      "description": "Directory Services (X.500)",
+      "asnNotation": "{joint-iso-itu-t(2) ds(5)}",
+      "iriNotation": "/Joint-ISO-ITU-T/DS",
+      "createdAt": "2025-11-27T00:00:00Z",
+      "modifiedAt": "2025-11-27T00:00:00Z"
+    },
+    {
+      "oid": "2.5.4",
+      "name": "attributeType",
+      "description": "X.500 attribute types",
+      "createdAt": "2025-11-27T00:00:00Z",
+      "modifiedAt": "2025-11-27T00:00:00Z"
+    },
+    {
+      "oid": "2.5.4.3",
+      "name": "commonName",
+      "description": "X.500 Common Name (CN) attribute",
+      "comments": "Commonly used in certificates",
+      "createdAt": "2025-11-27T00:00:00Z",
+      "modifiedAt": "2025-11-27T00:00:00Z"
+    }
+  ]
+}
