@@ -4,12 +4,12 @@ const STORAGE_KEY = 'oid-visualizer-dark-mode'
 
 const isDark = ref(false)
 
-// Initialize from localStorage or system preference
+// Initialize from localStorage or default to dark mode
 const stored = localStorage.getItem(STORAGE_KEY)
 if (stored !== null) {
   isDark.value = stored === 'true'
 } else {
-  isDark.value = window.matchMedia('(prefers-color-scheme: dark)').matches
+  isDark.value = true // Default to dark mode
 }
 
 // Apply dark class to document
